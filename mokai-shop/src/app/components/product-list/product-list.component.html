@@ -1,0 +1,28 @@
+<section class="products-section">
+  <div class="section-header">
+    <h2 class="section-title">Our Collection</h2>
+    <p class="section-subtitle">Curated products for the discerning individual</p>
+  </div>
+
+  <div class="filters">
+    <mat-chip-listbox [multiple]="false" class="category-chips">
+      <mat-chip-option 
+        *ngFor="let category of categories()" 
+        [selected]="selectedCategory === category"
+        (click)="selectCategory(category)">
+        {{ category }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+
+  <div class="products-grid">
+    @for (product of products(); track product.id) {
+      @if (selectedCategory === 'All' || product.category === selectedCategory) {
+        <app-product-card 
+          [product]="product"
+          (addToCart)="addToCart($event)">
+        </app-product-card>
+      }
+    }
+  </div>
+</section>
