@@ -1,0 +1,24 @@
+<header class="header" [class.scrolled]="true">
+  <div class="header-content">
+    <div class="logo">
+      <span class="logo-text">Mokai Shop</span>
+    </div>
+    
+    <div class="search-bar">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" placeholder="Search products..." class="search-input">
+    </div>
+    
+    <div class="header-actions">
+      <button mat-icon-button (click)="toggleTheme()" class="theme-toggle">
+        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      
+      <button mat-icon-button (click)="openCart()" class="cart-button">
+        <mat-icon [matBadge]="totalItems()" matBadgeColor="accent" [matBadgeHidden]="totalItems() === 0">
+          shopping_bag
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+</header>

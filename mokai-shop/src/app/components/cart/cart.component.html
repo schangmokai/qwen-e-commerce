@@ -1,0 +1,52 @@
+<div class="cart-container">
+  <div class="cart-header">
+    <h2 class="cart-title">Your Cart</h2>
+    <button mat-icon-button (click)="clearCart()" class="clear-btn" [disabled]="totalItems() === 0">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+
+  @if (totalItems() === 0) {
+    <div class="empty-cart">
+      <mat-icon class="empty-icon">shopping_bag_outlined</mat-icon>
+      <p class="empty-text">Your cart is empty</p>
+      <p class="empty-subtext">Start shopping to add items here</p>
+    </div>
+  } @else {
+    <div class="cart-items">
+      @for (item of cartItems(); track item.product.id) {
+        <div class="cart-item">
+          <img [src]="item.product.imageUrl" [alt]="item.product.title" class="cart-item-image">
+          <div class="cart-item-details">
+            <h4 class="cart-item-title">{{ item.product.title }}</h4>
+            <p class="cart-item-price">${{ item.product.price }}</p>
+            
+            <div class="quantity-controls">
+              <button mat-icon-button (click)="updateQuantity(item.product.id, item.quantity - 1)">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button mat-icon-button (click)="updateQuantity(item.product.id, item.quantity + 1)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+          <button mat-icon-button (click)="removeFromCart(item.product.id)" class="remove-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span class="total-label">Total</span>
+        <span class="total-amount">${{ totalPrice() }}</span>
+      </div>
+      <button mat-raised-button color="primary" class="checkout-btn">
+        Proceed to Checkout
+        <mat-icon>north_east</mat-icon>
+      </button>
+    </div>
+  }
+</div>

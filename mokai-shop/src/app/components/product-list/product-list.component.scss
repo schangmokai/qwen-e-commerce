@@ -1,0 +1,99 @@
+.products-section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: rgba(0, 0, 0, 0.6);
+      font-weight: 400;
+    }
+  }
+
+  .filters {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+
+    .category-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+
+      mat-chip-option {
+        border-radius: 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+
+        &[aria-selected='true'] {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          border-color: transparent;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        &:not([aria-selected='true']) {
+          &:hover {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+
+// Dark theme
+.dark-theme {
+  .products-section {
+    .section-header {
+      .section-title {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    .filters {
+      .category-chips {
+        mat-chip-option {
+          border-color: rgba(255, 255, 255, 0.1);
+
+          &:not([aria-selected='true']) {
+            &:hover {
+              background: rgba(255, 255, 255, 0.05);
+              border-color: rgba(255, 255, 255, 0.2);
+            }
+          }
+        }
+      }
+    }
+  }
+}
